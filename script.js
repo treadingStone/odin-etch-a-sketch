@@ -8,15 +8,17 @@ function generateRandomHex() {
 };
 
 function generateGrid(size) {
-    const gridContainerSize = 500;
-
     const body = document.querySelector('body');
 
     const gridContainer = document.createElement('div');
 
+    const gridContainerSize = 500;
+
     gridContainer.classList.add('grid-container');
     gridContainer.style.width = `${gridContainerSize}px`;
     gridContainer.style.height = `${gridContainerSize}px`;
+
+
 
     gridContainer.addEventListener('mouseover', (e) => {
         if (e.target.classList.contains('square')) {
@@ -36,3 +38,15 @@ function generateGrid(size) {
 };
 
 generateGrid(16);
+
+const gridSizeButton = document.querySelector('button');
+
+gridSizeButton.addEventListener('click', () => {
+    let newSize = prompt("Please enter the desired grid size between 16 and 100.");
+    if (newSize > 100 || newSize < 16) {
+        alert("Please enter a size between 16 and 100.");
+    } else {
+        document.querySelector('.grid-container').remove();
+        generateGrid(newSize);
+    };
+});
